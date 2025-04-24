@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Background video -->
+  <video autoplay muted loop playsinline id="bgVideo">
+    <source src="bg.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Game title -->
+  <h1 class="game-title">Tic Tac Toe</h1>
+ 
+
+  <!-- Game Container -->
+  <div class="container">
+    <!-- Player name inputs & start -->
+    <div class="player-inputs">
+      <input type="text" id="playerX" placeholder="Player 1 Name" />
+      <input type="text" id="playerO" placeholder="Player 2 Name" />
+      <button onclick="startGame()">Start Game</button>
+      <div id="gameStatus" class="game-status-text"></div>    
+    </div>
+
+    <!-- Game Board -->
+    <div class="right-panel">
+      <div id="game">
+        <!-- 9 clickable cells -->
+        <div class="cell" onclick="makeMove(0)"></div>
+        <div class="cell" onclick="makeMove(1)"></div>
+        <div class="cell" onclick="makeMove(2)"></div>
+        <div class="cell" onclick="makeMove(3)"></div>
+        <div class="cell" onclick="makeMove(4)"></div>
+        <div class="cell" onclick="makeMove(5)"></div>
+        <div class="cell" onclick="makeMove(6)"></div>
+        <div class="cell" onclick="makeMove(7)"></div>
+        <div class="cell" onclick="makeMove(8)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Button -->
+  <div class="bottom-panel">
+    <p id="turn">Click Start Game</p>
+    <button onclick="resetGame()">Reset</button>
+  </div>
+
+  <!-- Winner Popup -->
+  <div id="winnerPopup" class="popup hidden">
+    <div class="popup-content">
+      <p id="winnerMessage"></p>
+      <button onclick="closePopup()">OKAY 🎉</button>
+    </div>
+  </div>
+
+  <!-- Sounds -->
+  <audio id="clickSound" src="pop.mp3"></audio>
+  <audio id="celebrationSound" src="cheer.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

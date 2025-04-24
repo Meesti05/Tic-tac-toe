@@ -1,0 +1,143 @@
+/* Background Video */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Fonts and Body */
+body {
+  margin: 0;
+  font-family: 'Monoton', cursive;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Game Title */
+.game-title {
+  text-align: center;
+  font-size: 80px;
+  margin-top: 20px 0 5px; 
+}
+
+/* Game Status */
+.game-status {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: -10px;
+  font-family:  'Times New Roman', Times serif;
+}
+
+/* Layout Container */
+.container {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  padding-left: 180px;
+}
+
+/* Panels */
+.left-panel, .right-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Game Grid */
+#game {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+}
+
+/* Game Cell */
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  color: black;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.cell:hover {
+  background-color: #e0e0e0;
+}
+.cell.x {
+  background-color: #b39ddb;
+  color: white;
+}
+.cell.o {
+  background-color: #80cbc4;
+  color: white;
+}
+
+/* Inputs and Buttons */
+input, button {
+  margin: 10px;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-family: 'Barriecito', cursive;
+  width: 250px;
+  text-align: center;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+}
+button:hover {
+  background-color: #45a049;
+}
+
+/* Reset & Turn */
+.bottom-panel {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Winner Popup */
+.popup {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.popup-content {
+  background-color: #fff;
+  color: #000;
+  padding: 30px;
+  text-align: center;
+  border-radius: 16px;
+  font-size: 22px;
+  font-family: 'Barriecito', cursive;
+  box-shadow: 0 0 20px #fff;
+}
+.popup-content button {
+  margin-top: 20px;
+  background-color: #ff69b4;
+  color: white;
+}
+.hidden {
+  display: none;
+}
+.player-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
