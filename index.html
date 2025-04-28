@@ -7,63 +7,66 @@
   <link rel="stylesheet" href="style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+  <!-- Removed duplicate Google Fonts link -->
 </head>
 <body>
 
   <!-- Background video -->
-  <video autoplay muted loop playsinline id="bgVideo">
+  <video autoplay muted loop playsinline id="bgVideo" aria-hidden="true">
     <source src="bg.mp4" type="video/mp4" />
+    <!-- Added alt text equivalent as fallback -->
+    <p>Your browser does not support the video tag. This is a decorative background video.</p>
   </video>
+  <!-- Added loading indicator for video -->
+  <div id="loadingIndicator" class="loading-indicator">Loading...</div>
 
   <!-- Game title -->
   <h1 class="game-title">Tic Tac Toe</h1>
  
-
   <!-- Game Container -->
   <div class="container">
     <!-- Player name inputs & start -->
     <div class="player-inputs">
-      <input type="text" id="playerX" placeholder="Player 1 Name" />
-      <input type="text" id="playerO" placeholder="Player 2 Name" />
-      <button onclick="startGame()">Start Game</button>
-      <div id="gameStatus" class="game-status-text"></div>    
+      <input type="text" id="playerX" placeholder="Player 1 Name" aria-label="Player 1 Name" />
+      <input type="text" id="playerO" placeholder="Player 2 Name" aria-label="Player 2 Name" />
+      <button id="startButton">Start Game</button>
+      <div id="gameStatus" class="game-status-text" aria-live="polite"></div>    
     </div>
 
     <!-- Game Board -->
     <div class="right-panel">
-      <div id="game">
-        <!-- 9 clickable cells -->
-        <div class="cell" onclick="makeMove(0)"></div>
-        <div class="cell" onclick="makeMove(1)"></div>
-        <div class="cell" onclick="makeMove(2)"></div>
-        <div class="cell" onclick="makeMove(3)"></div>
-        <div class="cell" onclick="makeMove(4)"></div>
-        <div class="cell" onclick="makeMove(5)"></div>
-        <div class="cell" onclick="makeMove(6)"></div>
-        <div class="cell" onclick="makeMove(7)"></div>
-        <div class="cell" onclick="makeMove(8)"></div>
+      <div id="game" role="grid" aria-label="Tic Tac Toe Game Board">
+        <!-- 9 clickable cells with ARIA labels -->
+        <div class="cell" data-index="0" role="gridcell" aria-label="Cell 1, empty" tabindex="0"></div>
+        <div class="cell" data-index="1" role="gridcell" aria-label="Cell 2, empty" tabindex="0"></div>
+        <div class="cell" data-index="2" role="gridcell" aria-label="Cell 3, empty" tabindex="0"></div>
+        <div class="cell" data-index="3" role="gridcell" aria-label="Cell 4, empty" tabindex="0"></div>
+        <div class="cell" data-index="4" role="gridcell" aria-label="Cell 5, empty" tabindex="0"></div>
+        <div class="cell" data-index="5" role="gridcell" aria-label="Cell 6, empty" tabindex="0"></div>
+        <div class="cell" data-index="6" role="gridcell" aria-label="Cell 7, empty" tabindex="0"></div>
+        <div class="cell" data-index="7" role="gridcell" aria-label="Cell 8, empty" tabindex="0"></div>
+        <div class="cell" data-index="8" role="gridcell" aria-label="Cell 9, empty" tabindex="0"></div>
       </div>
     </div>
   </div>
 
   <!-- Reset Button -->
   <div class="bottom-panel">
-    <p id="turn">Click Start Game</p>
-    <button onclick="resetGame()">Reset</button>
+    <p id="turn" aria-live="polite">Click Start Game</p>
+    <button id="resetButton">Reset</button>
   </div>
 
   <!-- Winner Popup -->
-  <div id="winnerPopup" class="popup hidden">
+  <div id="winnerPopup" class="popup hidden" role="dialog" aria-labelledby="winnerMessage" aria-modal="true">
     <div class="popup-content">
       <p id="winnerMessage"></p>
-      <button onclick="closePopup()">OKAY 🎉</button>
+      <button id="closePopupButton">OKAY 🎉</button>
     </div>
   </div>
 
   <!-- Sounds -->
-  <audio id="clickSound" src="pop.mp3"></audio>
-  <audio id="celebrationSound" src="cheer.mp3"></audio>
+  <audio id="clickSound" src="pop.mp3" preload="auto"></audio>
+  <audio id="celebrationSound" src="cheer.mp3" preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>
