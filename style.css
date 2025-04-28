@@ -1,3 +1,17 @@
+/* CSS Variables */
+:root {
+  --primary-color: #4CAF50;
+  --hover-color: #45a049;
+  --x-color: #b39ddb;
+  --o-color: #80cbc4;
+  --popup-color: #ff69b4;
+  --cell-color: white;
+  --cell-hover-color: #e0e0e0;
+  --text-color: white;
+  --popup-text-color: #000;
+  --background-overlay: rgba(0, 0, 0, 0.3);
+}
+
 /* Background Video */
 #bgVideo {
   position: fixed;
@@ -9,11 +23,36 @@
   z-index: -1;
 }
 
+/* Loading indicator for video */
+.loading-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--background-overlay);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 5;
+  font-family: 'Barriecito', cursive;
+}
+
+/* Background overlay for better readability */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--background-overlay);
+  z-index: -1;
+}
+
 /* Fonts and Body */
 body {
   margin: 0;
   font-family: 'Monoton', cursive;
-  color: white;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -31,7 +70,7 @@ body {
   text-align: center;
   font-size: 30px;
   margin-bottom: -10px;
-  font-family:  'Times New Roman', Times serif;
+  font-family: 'Times New Roman', Times serif;
 }
 
 /* Layout Container */
@@ -61,25 +100,31 @@ body {
 .cell {
   width: 100px;
   height: 100px;
-  background-color: white;
-  color: black;
+  background-color: var(--cell-color);
+  color: var(--popup-text-color);
   font-size: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .cell:hover {
-  background-color: #e0e0e0;
+  background-color: var(--cell-hover-color);
+  transform: scale(1.05);
+}
+.cell:focus {
+  outline: 3px solid var(--primary-color);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 .cell.x {
-  background-color: #b39ddb;
-  color: white;
+  background-color: var(--x-color);
+  color: var(--text-color);
 }
 .cell.o {
-  background-color: #80cbc4;
-  color: white;
+  background-color: var(--o-color);
+  color: var(--text-color);
 }
 
 /* Inputs and Buttons */
@@ -93,13 +138,23 @@ input, button {
   font-family: 'Barriecito', cursive;
   width: 250px;
   text-align: center;
+  transition: all 0.3s ease;
+}
+input:focus {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 button {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  cursor: pointer;
 }
 button:hover {
-  background-color: #45a049;
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+button:focus {
+  outline: 3px solid var(--text-color);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Reset & Turn */
@@ -119,19 +174,22 @@ button:hover {
   z-index: 10;
 }
 .popup-content {
-  background-color: #fff;
-  color: #000;
+  background-color: var(--cell-color);
+  color: var(--popup-text-color);
   padding: 30px;
   text-align: center;
   border-radius: 16px;
   font-size: 22px;
   font-family: 'Barriecito', cursive;
-  box-shadow: 0 0 20px #fff;
+  box-shadow: 0 0 20px var(--text-color);
 }
 .popup-content button {
   margin-top: 20px;
-  background-color: #ff69b4;
-  color: white;
+  background-color: var(--popup-color);
+  color: var(--text-color);
+}
+.popup-content button:hover {
+  background-color: #ff4db2;
 }
 .hidden {
   display: none;
@@ -140,4 +198,50 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding-left: 20px;
+  }
+  
+  .game-title {
+    font-size: 40px;
+    margin-top: 10px;
+  }
+  
+  #game {
+    grid-template-columns: repeat(3, 80px);
+    gap: 5px;
+  }
+  
+  .cell {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+  
+  input, button {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  #game {
+    grid-template-columns: repeat(3, 60px);
+    gap: 5px;
+  }
+  
+  .cell {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  input, button {
+    width: 180px;
+    padding: 10px;
+  }
 }
